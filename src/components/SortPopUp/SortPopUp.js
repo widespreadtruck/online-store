@@ -3,29 +3,31 @@ import './SortPopUp.scss';
 
 const SortPopUp = ( { items } ) => {
     const [visiblePopUp, setVisiblePopUp] = useState(false);
-    const sortRef = useRef();
     const [activeItem, setActiveItem] = useState(0);
-    const activeLabel = items[activeItem];
+    const sortRef = useRef();
+    let activeLabel = items[activeItem];
 
-    const onSelectItem = (index) => {
-        setActiveItem(index);
-        console.log(activeItem);
-    }
+const onSelectItem = (index) => {
+    setActiveItem(index);
+    setVisiblePopUp(false);
+};
 
     const toggleVisiblePopUp = () => {
         setVisiblePopUp(!visiblePopUp);
     };
 
     const handleOutsideClick = (e) => {
-        if (e.originalTarget !== sortRef.current) {
+        if (
+            (e.originalTarget.offsetParent !== sortRef.current) &&
+            (e.originalTarget.offsetParent.offsetParent !== sortRef.current)
+        ) {
             setVisiblePopUp(false);
-        }
-    }
+        }        
+    };
 
     useEffect( () => {
         document.body.addEventListener('click', handleOutsideClick);
     }, []);
-
 
     return(
         <div ref={sortRef} 
@@ -52,9 +54,9 @@ const SortPopUp = ( { items } ) => {
                         {items &&
                             items.map( (item, index) => {
                                 return <li 
-                                onClick={ (index) => {onSelectItem(index)}  }
-                                key={`${item}_${index}`}
-                                className={activeItem === index ? 'active' : ''}
+                                    onClick={() => onSelectItem(index)}
+                                    key={ `${item}_${index}` }
+                                    className={ activeItem === index ? 'active' : '' }
                                 >
                                     {item}
                                 </li>   
