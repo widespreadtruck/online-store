@@ -6,7 +6,7 @@ import {
     SortPopUp
 } from '../components/index.js';
 
-const Home = () => {
+const Home = ( { items } ) => {
     return (
         <div>
             <div className="container">
@@ -29,7 +29,25 @@ const Home = () => {
                 </div>
                 <h2 className="content__title">All pizzas</h2>
                 <div className="content__items">
-                    <PizzaBlock />
+                {
+                    items &&
+                        items.map((obj) =>  
+                            <PizzaBlock 
+                                {...obj}
+                                key={obj.id} 
+                                // name={obj.name} 
+                                // url={obj.imageUrl} 
+                                // price={obj.price} 
+                                // sizes={[
+                                //     26,
+                                //     30,
+                                //     40
+                                // ]}
+
+                            />
+                    )
+                }
+
                 </div>
             </div>
         </div>

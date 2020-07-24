@@ -1,28 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PizzaBlock.scss';
+import classNames from 'classnames';
 
-const PizzaBlock = (props) => {
+const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
+    const [activeSize, setActiveSize] = useState(0);
+    const [activeType, setActiveType] = useState(0);
+
+    const typeNames = ["thin crust", "regular crust"];
+    
+
+    const onSelectSize = (index) => {
+        setActiveSize(index);
+    }
+
+    const onSelectType = (index) => {
+        setActiveType(index);
+    }
     return(
         <div className="pizza-block">
             <img
                 className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                src={imageUrl}
                 alt="Pizza"
             />
-            <h4 className="pizza-block__title">Cheesburger-pizza</h4>
+            <h4 className="pizza-block__title">{name}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li className="active">thin crust</li>
-                    <li>regular</li>
+                    {typeNames &&
+                        typeNames.map( (type, index) => {
+                            return(
+                                <li 
+                                    key={type}
+                                    classNames={}
+                                    onClick={() => onSelectType(index)}
+                                >
+                                    {type}
+                                </li>
+                            )
+                        })
+                    }
+                    {/* <li className={activeType === 0 ? "active" : "disabled"} >thin crust</li>
+                    <li className={activeType === 1 ? "active" : "disabled"}>regular crust</li> */}
                 </ul>
                 <ul>
-                    <li className="active">26 cm.</li>
-                    <li>30 cm.</li>
-                    <li>40 cm.</li>
-</ul>
+                    { sizes &&
+                            sizes.map( (size, index) => {
+                                return <li 
+                                            key={`${size}_${index}`} 
+                                            className={activeSize === index ? "active" : ""}
+                                            onClick={ () => onSelectSize(index)}
+                                        >
+                                            {size} cm.
+                                        </li>
+                                })
+                    }
+                </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">from $9</div>
+                <div className="pizza-block__price">from ${price}</div>
                 <div className="button button--outline button--add">
                     <svg
                         width="12"
