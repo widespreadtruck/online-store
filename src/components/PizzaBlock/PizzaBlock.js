@@ -3,19 +3,21 @@ import './PizzaBlock.scss';
 import classNames from 'classnames';
 
 const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
-    const [activeSize, setActiveSize] = useState(0);
-    const [activeType, setActiveType] = useState(0);
+    const [activeSize, setActiveSize] = useState(sizes[0]);
+    const [activeType, setActiveType] = useState(types[0]);
 
+    //all existing pizza types & sizes
     const typeNames = ["thin crust", "regular crust"];
+    const availableSizes = [26, 30, 40];
     
+    const onSelectType = (index) => {
+        setActiveType(index);
+    }
 
     const onSelectSize = (index) => {
         setActiveSize(index);
     }
 
-    const onSelectType = (index) => {
-        setActiveType(index);
-    }
     return(
         <div className="pizza-block">
             <img
@@ -27,11 +29,14 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
             <div className="pizza-block__selector">
                 <ul>
                     {typeNames &&
-                        typeNames.map( (type, index) => {
+                        typeNames.map((type, index) => {
                             return(
                                 <li 
                                     key={type}
-                                    classNames={}
+                                    className={classNames({
+                                        active: activeType === index,
+                                        disabled: !types.includes(index),
+                                    })}
                                     onClick={() => onSelectType(index)}
                                 >
                                     {type}
@@ -39,16 +44,17 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
                             )
                         })
                     }
-                    {/* <li className={activeType === 0 ? "active" : "disabled"} >thin crust</li>
-                    <li className={activeType === 1 ? "active" : "disabled"}>regular crust</li> */}
                 </ul>
                 <ul>
-                    { sizes &&
-                            sizes.map( (size, index) => {
+                    { availableSizes &&
+                        availableSizes.map( (size) => {
                                 return <li 
-                                            key={`${size}_${index}`} 
-                                            className={activeSize === index ? "active" : ""}
-                                            onClick={ () => onSelectSize(index)}
+                                            key={size} 
+                                            className={classNames({
+                                                active: activeSize === size,
+                                                disabled: !sizes.includes(size),
+                                            })}
+                                            onClick={ () => onSelectSize(size)}
                                         >
                                             {size} cm.
                                         </li>

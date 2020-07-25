@@ -33,17 +33,9 @@ const Home = ( { items } ) => {
                     items &&
                         items.map((obj) =>  
                             <PizzaBlock 
+                            //using Rest Parameter to pass down the multiple params
                                 {...obj}
                                 key={obj.id} 
-                                // name={obj.name} 
-                                // url={obj.imageUrl} 
-                                // price={obj.price} 
-                                // sizes={[
-                                //     26,
-                                //     30,
-                                //     40
-                                // ]}
-
                             />
                     )
                 }
