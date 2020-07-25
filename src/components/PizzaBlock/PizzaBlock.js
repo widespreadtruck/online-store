@@ -7,8 +7,6 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
     const [activeSize, setActiveSize] = useState(sizes[0]);
     const [activeType, setActiveType] = useState(types[0]);
 
-    console.log(imageUrl, name, sizes, price, types);
-
     //all existing pizza types & sizes
     const typeNames = ["thin crust", "regular crust"];
     const availableSizes = [26, 30, 40];
@@ -92,9 +90,18 @@ export default PizzaBlock;
 
 //making sure Property Types are correct
 PizzaBlock.propTypes = {
-    imageUrl: PropTypes.string,
-    name: PropTypes.string,
-    sizes: PropTypes.arrayOf(PropTypes.oneOf([26, 30, 40])),
-    price: PropTypes.number,
-    types: PropTypes.arrayOf(PropTypes.number)
+    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    sizes: PropTypes.arrayOf(PropTypes.oneOf([26, 30, 40])).isRequired,
+    price: PropTypes.number.isRequired,
+    types: PropTypes.arrayOf(PropTypes.number).isRequired
 };
+
+//adding Default Props
+PizzaBlock.defaultProps = {
+    name: '---',
+    price: 0,
+    types: [],
+    sizes: [],
+    imageUrl: 'image'
+}
