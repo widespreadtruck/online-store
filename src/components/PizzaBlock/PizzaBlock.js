@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './PizzaBlock.scss';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
     const [activeSize, setActiveSize] = useState(sizes[0]);
     const [activeType, setActiveType] = useState(types[0]);
+
+    console.log(imageUrl, name, sizes, price, types);
 
     //all existing pizza types & sizes
     const typeNames = ["thin crust", "regular crust"];
@@ -86,3 +89,12 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
 }
 
 export default PizzaBlock;
+
+//making sure Property Types are correct
+PizzaBlock.propTypes = {
+    imageUrl: PropTypes.string,
+    name: PropTypes.string,
+    sizes: PropTypes.arrayOf(PropTypes.oneOf([26, 30, 40])),
+    price: PropTypes.number,
+    types: PropTypes.arrayOf(PropTypes.number)
+};
