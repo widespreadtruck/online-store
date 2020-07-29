@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const Categories = ( { items } ) => {
     const [activeItem, setActiveItem] = useState(null);
-    console.log(activeItem);
 
     const onSelectItem = (index) => {
         setActiveItem(index);

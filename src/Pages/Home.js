@@ -21,9 +21,10 @@ const Home = ( { items } ) => {
                     />
 
                     <SortPopUp items={[
-                        "popularity",
-                        "price",
-                        "alphabet"]}
+                        { name: "popularity", type: "popularity" },
+                        { name: "price", type: "price" },
+                        { name: "alphabet", type: "alphabet" }
+                        ]}
                     />
 
                 </div>
