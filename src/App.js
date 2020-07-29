@@ -1,41 +1,54 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState, Component } from 'react';
 import './scss/app.scss';
-
 import { Header, Home, Cart } from './components/index';
-
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import axios from 'axios';
+import store from './redux/store';
+import { setPizzas as setPizzasAction, setPizzas } from './redux/actions/pizzas'
+import { connect } from 'react-redux';
+import pizzas from './redux/reducers/pizzas';
 
-
-function App() {
-  const [pizzas, setPizzas] = useState([]);
-
-  //on the first render grabbing data from a JSON object
-  //then we will pass the data received down to a child component Home
-  useEffect( ()=>{
-    //saving the JSON object to a State (a little overkill)
+class App extends Component {
+  
+  componentDidMount() {
     axios.get("http://localhost:3000/db.json")
-      .then(({ data }) => setPizzas(data.pizzas))
-      
-    //saving the JSON object to a State (better suits our case right now)
-    // fetch("http://localhost:3000/db.json")
-    //   .then( response => response.json() )
-    //   .then( json => setPizzas(json.pizzas) );
-    }, []);
-
-  return (
-    <div className ="wrapper">
-      <Header />
-      <div className="content">
-      <Router>
-        <Route path="/" render={ ()=> <Home items={pizzas} /> } exact/>
-        <Route path="/cart" component={Cart} />
-      </Router>
+    .then( ({data}) => {
+      // dispatching an action to hold a JSON object in the global state
+      //it then will be used in the Home component to display different pizzas
+      // this.props.dispatch(setPizzasAction(data.pizzas));
+      this.props.setPizzas(data.pizzas);
+    })
+  };
+  
+  
+  render() {
+    return (
+      <div className ="wrapper">
+        <Header />
+        <div className="content">
+        <Router>
+          <Route path="/" render={ ()=> <Home items={this.props.items} /> } exact/>
+          <Route path="/cart" component={Cart} />
+        </Router>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+};
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.pizzas.items,
+    filters: state.filters,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setPizzas: (items) => dispatch(setPizzasAction(items)),
+    dispatch,
+  }
 }
 
-export default App;
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
