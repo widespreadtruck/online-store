@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './SortPopUp.scss';
 
-const SortPopUp = React.memo( function SortPopUp( { items } ) {
+const SortPopUp = React.memo( function SortPopUp( { items, onClickItem } ) {
     const [visiblePopUp, setVisiblePopUp] = useState(false);
     const [activeItem, setActiveItem] = useState(0);
     const sortRef = useRef();
@@ -10,6 +10,7 @@ const SortPopUp = React.memo( function SortPopUp( { items } ) {
 const onSelectItem = (index) => {
     setActiveItem(index);
     setVisiblePopUp(false);
+    onClickItem(items[index].name);
 };
 
     const toggleVisiblePopUp = () => {

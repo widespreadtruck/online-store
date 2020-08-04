@@ -4,7 +4,7 @@ import './PizzaBlock.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
+const PizzaBlock = ({ imageUrl, name, sizes, price, types, isLoading } ) => {
     const [activeSize, setActiveSize] = useState(sizes[0]);
     const [activeType, setActiveType] = useState(types[0]);
 
@@ -19,6 +19,7 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
     const onSelectSize = (index) => {
         setActiveSize(index);
     }
+
 
     return(
         <div className="pizza-block">
@@ -83,7 +84,7 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
                     <i>2</i>
                 </Button>
             </div>
-        </div>    
+        </div> 
     );
 }
 
@@ -95,7 +96,8 @@ PizzaBlock.propTypes = {
     name: PropTypes.string.isRequired,
     sizes: PropTypes.arrayOf(PropTypes.oneOf([26, 30, 40])).isRequired,
     price: PropTypes.number.isRequired,
-    types: PropTypes.arrayOf(PropTypes.number).isRequired
+    types: PropTypes.arrayOf(PropTypes.number).isRequired,
+    isLoading: PropTypes.bool.isRequired
 };
 
 //adding Default Props
@@ -104,5 +106,6 @@ PizzaBlock.defaultProps = {
     price: 0,
     types: [],
     sizes: [],
-    imageUrl: 'image'
+    imageUrl: 'image',
+    isLoading: false
 }
