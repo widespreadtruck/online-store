@@ -2,7 +2,7 @@
 @import './variables';
 @import './libs/normalize';
 
-@import './components/all';
+@import './components/All';
 
 body {
   background-color: $background;
@@ -14,7 +14,7 @@ body {
   background-color: #fff;
   border-radius: 10px;
   max-width: 1400px;
-  margin: 50px;
+  margin: 50px auto;
 }
 
 .content {
@@ -27,7 +27,7 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   &__top {

@@ -1,26 +1,9 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import './scss/app.scss';
 import { Header, Home, Cart } from './components/index';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from 'axios';
-import store from './redux/store';
-import { setPizzas } from './redux/actions/pizzas'
-import { connect, useSelector, useDispatch } from 'react-redux';
-import pizzas from './redux/reducers/pizzas';
-
 
 const App = () => {
-  const dispatch = useDispatch();
-
-
-  //receiving data about the pizzas from a JSON file. Doing it in the App component and not in the PizzaBlock component or Home page such that it is only done once when App component is rendered.
-  React.useEffect( ( ) => {
-    //using npm json-server to grab data directly from the fake server
-    axios.get("http://localhost:3001/pizzas")
-    .then( ({data}) => {
-      dispatch(setPizzas(data));
-    })
-  }, [])
   
   return (
     <div className ="wrapper">
