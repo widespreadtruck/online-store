@@ -4,7 +4,7 @@ import './PizzaBlock.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const PizzaBlock = ({ imageUrl, name, sizes, price, types, isLoading } ) => {
+const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
     const [activeSize, setActiveSize] = useState(sizes[0]);
     const [activeType, setActiveType] = useState(types[0]);
 
@@ -51,17 +51,17 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types, isLoading } ) => {
                 <ul>
                     { availableSizes &&
                         availableSizes.map( (size) => {
-                                return <li 
-                                            key={size} 
-                                            className={classNames({
-                                                active: activeSize === size,
-                                                disabled: !sizes.includes(size),
-                                            })}
-                                            onClick={ () => onSelectSize(size)}
-                                        >
-                                            {size} cm.
-                                        </li>
-                                })
+                            return <li 
+                                        key={size} 
+                                        className={classNames({
+                                            active: activeSize === size,
+                                            disabled: !sizes.includes(size),
+                                        })}
+                                        onClick={ () => onSelectSize(size)}
+                                    >
+                                        {size} cm.
+                                    </li>
+                            })
                     }
                 </ul>
             </div>

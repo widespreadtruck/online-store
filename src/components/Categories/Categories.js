@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Categories = React.memo(function Categories({ items, onClickCategory, activeCategory }) {
-    // const [activeItem, setActiveItem] = useState(null);
 
 
     return (
@@ -30,8 +29,8 @@ const Categories = React.memo(function Categories({ items, onClickCategory, acti
 
 //making sure Property Types are correct
 Categories.propTypes = {
-    activeCategory: PropTypes.number.isRequired,
-    items: PropTypes.arrayOf(PropTypes.object).isRequired,
+    activeCategory: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.arrayOf(PropTypes.string).isRequired,
     onSelectItem: PropTypes.func
 };
 
