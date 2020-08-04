@@ -27,19 +27,17 @@ const Home = () => {
     //destructuring the state & extracting from state: category & sortBy values from "filters"
     const { category, sortBy} = useSelector( state => state.filters);
 
-    console.log(category, sortBy);
-
     const onSelectCategory = React.useCallback((index) => {
         dispatch(setCategory(index));
     }, []);
 
-    const onSelectSortBy = React.useCallback( (sortBy) => {
-        dispatch(setSortBy(sortBy))
+    const onSelectSortType = React.useCallback( (type) => {
+        dispatch(setSortBy(type))
     }, [])
 
     React.useEffect(() => {
             dispatch(fetchPizzas());
-    }, [])
+    }, [category, sortBy])
     
 
     return (
@@ -55,7 +53,8 @@ const Home = () => {
 
                     <SortPopUp
                         items={sortItems}
-                        onClickItem={onSelectSortBy}
+                        activeSortType={sortBy}
+                        onClickSortType={onSelectSortType}
                     />
 
                 </div>
@@ -69,6 +68,7 @@ const Home = () => {
                             {...obj}
                             key={obj.id} 
                             isLoading={true}
+                            categoryUpdated={category}
                         />)
                     : 
                     Array(12)
