@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/online-store/static/css/main.ef2e23ce.chunk.css",
+    "main.js": "/online-store/static/js/main.f8bdca8d.chunk.js",
+    "main.js.map": "/online-store/static/js/main.f8bdca8d.chunk.js.map",
+    "runtime-main.js": "/online-store/static/js/runtime-main.d46b2840.js",
+    "runtime-main.js.map": "/online-store/static/js/runtime-main.d46b2840.js.map",
+    "static/js/2.f3d1c6d8.chunk.js": "/online-store/static/js/2.f3d1c6d8.chunk.js",
+    "static/js/2.f3d1c6d8.chunk.js.map": "/online-store/static/js/2.f3d1c6d8.chunk.js.map",
+    "index.html": "/online-store/index.html",
+    "precache-manifest.3410af77322c044878f474c256af9c78.js": "/online-store/precache-manifest.3410af77322c044878f474c256af9c78.js",
+    "service-worker.js": "/online-store/service-worker.js",
+    "static/css/main.ef2e23ce.chunk.css.map": "/online-store/static/css/main.ef2e23ce.chunk.css.map",
+    "static/js/2.f3d1c6d8.chunk.js.LICENSE.txt": "/online-store/static/js/2.f3d1c6d8.chunk.js.LICENSE.txt",
+    "static/media/pizza-logo.svg": "/online-store/static/media/pizza-logo.f3327011.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d46b2840.js",
+    "static/js/2.f3d1c6d8.chunk.js",
+    "static/css/main.ef2e23ce.chunk.css",
+    "static/js/main.f8bdca8d.chunk.js"
+  ]
+}
