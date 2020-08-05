@@ -8,7 +8,7 @@ export const setLoaded = (value) => ({
 export const fetchPizzas = (category, sortBy) => (dispatch) => {
     console.log(category, sortBy)
     dispatch(setLoaded(false));
-    axios.get(`http://localhost:3001/pizzas?${
+    axios.get(`https://github.com/widespreadtruck/online-store/blob/master/public/db.json/pizzas?${
         category !== null ? `category=${category}` : ``
         }&_sort=${sortBy.type}&_order=${sortBy.order}`)
         .then(({ data }) => {
