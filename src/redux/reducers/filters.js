@@ -1,6 +1,10 @@
 const initialState = {
     category: null,
-    sortBy: 'popularity',
+    sortBy: {
+        type: 'popularity',
+        order: 'desc',
+        name: 'popularity'
+    },
 };
 
 
