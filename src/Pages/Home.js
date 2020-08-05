@@ -12,9 +12,9 @@ import {
 
 const categoryNames = [ "Meat", "Vegan", "Grill", "Spicy", "Pies" ];
 const sortItems = [
-    { name: "popularity", type: "popularity" },
-    { name: "price", type: "price" },
-    { name: "alphabet", type: "alphabet" }
+    { name: "popularity", type: "rating", order: 'desc' },
+    { name: "price", type: "price", order: 'desc' },
+    { name: "alphabet", type: "title", order: 'asc' }
 ];
 
 const Home = () => {
@@ -31,12 +31,12 @@ const Home = () => {
         dispatch(setCategory(index));
     }, []);
 
-    const onSelectSortType = React.useCallback( (type) => {
-        dispatch(setSortBy(type))
+    const onSelectSortType = React.useCallback( (obj) => {
+        dispatch(setSortBy(obj))
     }, [])
 
-    React.useEffect(() => {
-            dispatch(fetchPizzas());
+    React.useEffect( () => {
+        dispatch(fetchPizzas(category, sortBy));
     }, [category, sortBy])
     
 
@@ -53,7 +53,7 @@ const Home = () => {
 
                     <SortPopUp
                         items={sortItems}
-                        activeSortType={sortBy}
+                        activeSortType={sortBy.name}
                         onClickSortType={onSelectSortType}
                     />
 
