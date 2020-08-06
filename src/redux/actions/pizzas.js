@@ -8,7 +8,7 @@ export const setLoaded = (value) => ({
 export const fetchPizzas = (category, sortBy) => (dispatch) => {
     console.log(category, sortBy)
     dispatch(setLoaded(false));
-    axios.get(`https://nikitaguliaev.com/dbForPizzaStore/db.json/pizzas?${
+    axios.get(`https://my-json-server.typicode.com/widespreadtruck/dbForPizzaStore/pizzas?${
         category !== null ? `category=${category}` : ``
         }&_sort=${sortBy.type}&_order=${sortBy.order}`)
         .then(({ data }) => {
