@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
+import { addPizzaToCart } from '../redux/actions/cart';
 
 import {
     PizzaBlock,
@@ -20,12 +21,17 @@ const sortItems = [
 const Home = () => {
     const dispatch = useDispatch();
 
+    const cartItems = useSelector( ( {cart} )=>cart.items)
     //extracting from state: array of 10 pizzas
     const items = useSelector((state) => state.pizzas.items);
     //extracting from state: boolean value
     const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
     //destructuring the state & extracting from state: category & sortBy values from "filters"
     const { category, sortBy} = useSelector( state => state.filters);
+
+    const handleAddPizzaToCart = obj => {
+        dispatch(addPizzaToCart(obj))
+    }
 
     const onSelectCategory = React.useCallback((index) => {
         dispatch(setCategory(index));
@@ -65,10 +71,11 @@ const Home = () => {
                     ? items.map((obj) =>  
                         <PizzaBlock 
                         //using Rest Parameter to pass down the multiple params
+                            onClickAddPizza={handleAddPizzaToCart}
                             {...obj}
                             key={obj.id} 
-                            isLoading={true}
                             categoryUpdated={category}
+                            addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                         />)
                     : 
                     Array(12)

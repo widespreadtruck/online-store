@@ -6,4 +6,5 @@ export { default as Header } from '../components/Header/Header';
 export { default as Cart } from '../Pages/Cart';
 export { default as Button } from '../components/Button/Button';
 export { default as PizzaLoadingBlock } from '../components/PizzaBlock/PizzaLoadingBlock';
+export { default as CartItem } from '../components/CartItem/CartItem';
 

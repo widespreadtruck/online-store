@@ -4,7 +4,7 @@ import './PizzaBlock.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
+const PizzaBlock = ({ id, imageUrl, name, sizes, price, types, onClickAddPizza, addedCount } ) => {
     const [activeSize, setActiveSize] = useState(sizes[0]);
     const [activeType, setActiveType] = useState(types[0]);
 
@@ -18,6 +18,18 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
 
     const onSelectSize = (index) => {
         setActiveSize(index);
+    }
+
+    const onAddPizza = () => {
+        const obj = {
+            id,
+            imageUrl,
+            name,
+            price, 
+            size: activeSize,
+            type: typeNames[activeType],
+        }
+        onClickAddPizza(obj);
     }
 
 
@@ -67,7 +79,10 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">from ${price}</div>
-                <Button className='button--add' outline >
+                <Button 
+                    className='button--add' 
+                    outline 
+                >
                     <svg
                         width="12"
                         height="12"
@@ -80,8 +95,16 @@ const PizzaBlock = ({ imageUrl, name, sizes, price, types } ) => {
                             fill="white"
                         />
                     </svg>
-                    <span>Add</span>
-                    <i>2</i>
+                    <span 
+                        onClick={onAddPizza}
+                    >
+                        Add
+                    </span>
+                    {
+                    addedCount
+                        ? <i>{addedCount}</i>
+                        : <i>0</i>
+                    }
                 </Button>
             </div>
         </div> 
@@ -97,7 +120,9 @@ PizzaBlock.propTypes = {
     sizes: PropTypes.arrayOf(PropTypes.oneOf([26, 30, 40])).isRequired,
     price: PropTypes.number.isRequired,
     types: PropTypes.arrayOf(PropTypes.number).isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    // onClickAddPizza: PropTypes.func.isRequired
+    addedCount: PropTypes.number
 };
 
 //adding Default Props

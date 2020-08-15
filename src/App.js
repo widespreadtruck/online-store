@@ -6,15 +6,15 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 const App = () => {
   
   return (
-    <div className ="wrapper">
-      <Header />
-      <div className="content">
-      <Router>
+    <Router>
+      <div className ="wrapper">
+        <Header />
+        <div className="content">
           <Route path="/" component={Home} exact/>
-        <Route path="/cart" component={Cart} />
-      </Router>
+          <Route path="/cart" component={Cart} exact/>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
 

@@ -11,7 +11,7 @@ const SortPopUp = React.memo( function SortPopUp( { items, onClickSortType, acti
         onClickSortType({
             type: type,
             order: order,
-            name: name,
+            name: name
         });
         setVisiblePopUp(false);
 };
@@ -20,18 +20,23 @@ const SortPopUp = React.memo( function SortPopUp( { items, onClickSortType, acti
         setVisiblePopUp(!visiblePopUp);
     };
 
-    const handleOutsideClick = (e) => {
-        if (
-            (e.originalTarget.offsetParent !== sortRef.current) &&
-            (e.originalTarget.offsetParent.offsetParent !== sortRef.current)
-        ) {
-            setVisiblePopUp(false);
-        }        
-    };
+    // const handleOutsideClick = (e) => {
+    //     // const path = e.path || (e.composedPath && e.composedPath());
+    //     // if (!e.path.includes(sortRef.current)) {
+    //     //     setVisiblePopUp(false);
+    //     // }
+    
+    //     if (
+    //         (e.originalTarget.offsetParent !== sortRef.current) &&
+    //         (e.originalTarget.offsetParent.offsetParent !== sortRef.current)
+    //     ) {
+    //         setVisiblePopUp(false);
+    //     }        
+    // };
 
-    useEffect( () => {
-        document.body.addEventListener('click', handleOutsideClick);
-    }, []);
+    // useEffect( () => {
+    //     document.body.addEventListener('click', handleOutsideClick);
+    // }, []);
 
     return(
         <div ref={sortRef} 
