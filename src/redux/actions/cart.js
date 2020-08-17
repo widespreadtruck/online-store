@@ -3,6 +3,11 @@ export const addPizzaToCart = (obj) => ({
     payload: obj
 });
 
-export const clearCart = (obj) => ({
-    type: 'CLEAR_CART',
+export const clearCart = () => ({
+    type: 'CLEAR_CART'
+});
+
+export const deletePizzaItem = (id) => ({
+    type: 'DELETE_PIZZA',
+    payload: id
 })

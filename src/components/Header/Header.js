@@ -14,7 +14,7 @@ const Header = () => {
             <div className="container">
                 <Link to="/" >
                     <div className="header__logo">
-                        <img width="38" src={PizzaLogo} alt="Pizza logo" />
+                        <div className="header__logo_emoji">🍕</div>
                         <div>
                             <h1>Tasty Pizza</h1>
                             <p>Best pizza in the World</p>

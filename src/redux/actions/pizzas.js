@@ -7,7 +7,9 @@ export const setLoaded = (value) => ({
 
 export const fetchPizzas = (category, sortBy) => (dispatch) => {
     dispatch(setLoaded(false));
-    axios.get(`/pizzas?${category !== null ? `category=${category}` : `` }&_sort=${sortBy.type}&_order=${sortBy.order}`)
+    axios.get(`https://my-json-server.typicode.com/widespreadtruck/dbForPizzaStore/pizzas?${
+        category !== null ? `category=${category}` : ``
+        }&_sort=${sortBy.type}&_order=${sortBy.order}`)
         .then(({ data }) => {
             dispatch(setPizzas(data));
         });

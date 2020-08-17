@@ -80,6 +80,7 @@ const PizzaBlock = ({ id, imageUrl, name, sizes, price, types, onClickAddPizza, 
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">from ${price}</div>
                 <Button 
+                    onClick={onAddPizza}
                     className='button--add' 
                     outline 
                 >
@@ -95,11 +96,7 @@ const PizzaBlock = ({ id, imageUrl, name, sizes, price, types, onClickAddPizza, 
                             fill="white"
                         />
                     </svg>
-                    <span 
-                        onClick={onAddPizza}
-                    >
-                        Add
-                    </span>
+                    <span>Add</span>
                     {
                     addedCount
                         ? <i>{addedCount}</i>
