@@ -10,7 +10,7 @@ const App = () => {
       <div className ="wrapper">
         <Header />
         <div className="content">
-          <Route path="/" component={Home} exact/>
+          <Route path="/online-store" component={Home} exact/>
           <Route path="/cart" component={Cart} exact/>
         </div>
       </div>

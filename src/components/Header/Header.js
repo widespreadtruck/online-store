@@ -12,7 +12,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="container">
-                <Link to="/" >
+                <Link to="/online-store" >
                     <div className="header__logo">
                         <div className="header__logo_emoji">🍕</div>
                         <div>
