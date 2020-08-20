@@ -1,15 +1,14 @@
 import React from 'react';
 import {CartItem} from '../components';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCart } from '../redux/actions/cart';
+import { clearCart, removeCartItem } from '../redux/actions/cart';
 import { Link } from 'react-router-dom';
-import { deletePizzaItem } from '../redux/actions/cart';
 
 const Cart = () => {
     const dispatch = useDispatch();
 
     const onRemoveItem = (id) => {
-        dispatch(deletePizzaItem(id))
+        dispatch(removeCartItem(id))
     }
     const handleClearCart = React.useCallback( ()=>{
         if (isCartEmpty.length !== 0) {
@@ -51,10 +50,11 @@ const Cart = () => {
                             <span>Clear cart</span>
                         </div>
                     </div>
-                    <div className="content__items">
+                    <div className="cart__items">
                         {isCartEmpty.length !== 0
                             ? addedPizzas.map( (obj)=>
                                     <CartItem 
+                                        id={obj.id}
                                         name={obj.name}
                                         type={obj.type}
                                         size={obj.size}

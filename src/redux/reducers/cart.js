@@ -1,3 +1,5 @@
+import { setPizzas } from '../actions/pizzas';
+
 const initialState = {
     items: {},
     totalPrice: 0,
@@ -23,18 +25,13 @@ const cart = (state = initialState, action) => {
                 }
             };
 
-            const items = Object.values(newItems).map( obj => {
-                return obj.items
-            })
-            const allPizzas = [].concat.apply([], items);
-            const totalPrice = getTotalPrice(allPizzas);
+            const totalCount = Object.keys(newItems).reduce((sum, key) => newItems[key].items.length + sum, 0);
+            const totalPrice = Object.keys(newItems).reduce((sum, key) => newItems[key].totalPrice + sum, 0);
 
             return {
                 ...state,
                 items: newItems,
-                //create a new array, put all objects' values from newItems in that array, display the number of items
-                totalCount: allPizzas.length,
-                // totalPrice: totalPrice,
+                totalCount,
                 totalPrice,
             };
 
@@ -46,18 +43,22 @@ const cart = (state = initialState, action) => {
                 totalCount: 0,
             };
 
-        case 'DELETE_PIZZA':
+
+        case 'REMOVE_CART_ITEM':
             const updatedItems = {
-                ...state.items,
-            };
+                ...state.items
+            }
+            const currentTotalPrice = updatedItems[action.payload].totalPrice;
+            const currentTotalCount = updatedItems[action.payload].items.length;
             delete updatedItems[action.payload];
-            
+
             return {
                 ...state,
-                // items: itemToDelete,
                 items: updatedItems,
-                // [...state.items[action.payload.id]
+                totalPrice: state.totalPrice - currentTotalPrice,
+                totalCount: state.totalCount - currentTotalCount,
             };
+
 
         default:
             return state;
