@@ -15,7 +15,7 @@ const Header = () => {
                 <Link to="/online-store" >
                     <div className="header__logo">
                         <div className="header__logo_emoji">🍕</div>
-                        <div>
+                        <div className="header__logo_titles">
                             <h1>Tasty Pizza</h1>
                             <p>Best pizza in the World</p>
                         </div>
@@ -23,7 +23,7 @@ const Header = () => {
                 </Link>
                 <Link to="/cart">
                     <div className="header__cart">
-                        <a href="/cart" className="button button--cart">
+                        <a className="button button--cart">
                             <span>${totalPrice}</span>
                             <div className="button__delimiter"></div>
                             <svg

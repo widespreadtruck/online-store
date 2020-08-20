@@ -12,10 +12,16 @@
 
   &__logo {
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     &_emoji {
       font-size: 50px;
     }
+
+    // &_titles {
+
+    // }
 
     h1 {
       color: #181818;
