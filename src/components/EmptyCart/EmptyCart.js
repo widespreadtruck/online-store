@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 const EmptyCart = () => {
     return (
         <>
-            <img className="cart__image" src={emptyCartImg} alt="image of an empty cart"/>
-            <p className="cart__empty">Looks like your cart is empty😅 Go to the Home page to find the best pizzas🍕</p>
+            <p className="cart__emoji">🕵️‍♀️🕵️‍♂️</p>
+            <p className="cart__empty">Our detectives report your cart looks empty... Go to the Home page to find best pizzas!</p>
             <Link to="/online-store">
-            <div className="test">
+                <div className="btn-wrapper">
                 <Button className="button button--outline button--add go-home-btn">
-                    <span>Back</span>
+                    <span>Home</span>
                 </Button>
             </div>
             </Link>

@@ -16,7 +16,7 @@ const categoryNames = ["Meat", "Vegetarian", "Grill", "Spicy" ];
 const sortItems = [
     { name: "popularity", type: "rating", order: 'desc' },
     { name: "price", type: "price", order: 'desc' },
-    { name: "alphabet", type: "title", order: 'asc' }
+    { name: "alphabet", type: "name", order: 'asc' }
 ];
 
 const Home = () => {
@@ -90,7 +90,7 @@ const Home = () => {
                     />
 
                 </div>
-                <h2 className="content__title">All pizzas</h2>
+                {/* <h2 className="content__name">All pizzas</h2> */}
                 <div className="content__items">
                 {
                     isLoaded

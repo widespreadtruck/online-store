@@ -9,7 +9,3 @@ export const setCategory = (catIndex) => ({
     payload: catIndex,
 });
 
-// export const setMiniCategory = (category) => ({
-//     type: 'SET_MINI_CATEGORY',
-//     payload: category,
-// });

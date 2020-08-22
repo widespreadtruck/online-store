@@ -9,3 +9,4 @@ export { default as PizzaLoadingBlock } from '../components/PizzaBlock/PizzaLoad
 export { default as CartItem } from '../components/CartItem/CartItem';
 export { default as CategoriesPopUp } from '../components/CategoriesPopUp/CategoriesPopUp';
 export { default as EmptyCart } from '../components/EmptyCart/EmptyCart';
+export { default as ClearCart } from '../components/ClearCart/ClearCart';

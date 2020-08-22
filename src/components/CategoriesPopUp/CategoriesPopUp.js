@@ -24,6 +24,7 @@ const CategoriesPopUp = React.memo(function SortPopUp({ items, onClickCategory, 
             className="sort">
             <div className="sort__label">
                 <svg
+                    className={visiblePopUp ? 'rotated' : ''}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"

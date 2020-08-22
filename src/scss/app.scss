@@ -25,6 +25,10 @@ body {
 .content {
   padding: 40px 0;
 
+  @media screen and (max-width: 740px) {
+    padding: 10px 0;
+  }
+
   &__title {
     margin: 35px 0;
   }
@@ -34,12 +38,18 @@ body {
     grid-template-columns: repeat(auto-fill, 280px);
     grid-gap: 10px;
     justify-content: space-evenly;
+    margin-top: 30px;
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  &__name {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }
 
@@ -224,21 +234,27 @@ body {
   }
 
   &__empty {
-    width: 100%;
+    width: 90%;
     border-top: 1px solid #f6f6f6;
-    padding-top: 30px;
-    margin-top: 30px;
+    margin: 0 auto;
     margin-bottom: 60px;
     font-size: 22px;
+    max-width: 470px;
 
     @media screen and (max-width: 740px) {
       font-size: 16px;
     }
   }
 
-  &__image {
+
+  &__emoji {
     margin: 0 auto;
+    font-size: 140px;
     margin-top: 50px;
+
+    @media screen and (max-width: 740px) {
+      font-size: 70px;
+    }
   }
 
   &__bottom {
