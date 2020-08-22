@@ -3,6 +3,9 @@
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
+  @media screen and (max-width: 740px) {
+    padding: 20px 0;
+  }
 
   .container {
     display: flex;
@@ -17,6 +20,9 @@
 
     &_emoji {
       font-size: 50px;
+      // @media screen and (max-width: 740px) {
+      //   display: none;
+      // }
     }
 
     // &_titles {
@@ -29,10 +35,17 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+      @media screen and (max-width: 740px) {
+        font-size: 18px;
+      }
+
     }
 
     p {
       color: #7b7b7b;
+      @media screen and (max-width: 740px) {
+        display: none;
+      }
     }
   }
 }

@@ -144,5 +144,25 @@
       font-weight: 600;
       font-size: 16px;
     }
+    
+    @media screen and (max-width: 740px) {
+      padding: 8px 15px;
+    }
+  }
+}
+.test {
+  display: flex;
+}
+
+.button.go-home-btn {
+    width: 210px;
+    height: 55px; 
+  margin: 0 auto;
+  }
+
+@media screen and (max-width: 740px) {
+  .button__delimiter {
+    margin-left: 7px;
+    margin-right: 7px;
   }
 }

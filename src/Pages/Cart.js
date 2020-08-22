@@ -1,5 +1,5 @@
 import React from 'react';
-import {CartItem} from '../components';
+import { CartItem, EmptyCart, Button } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCart, removeCartItem } from '../redux/actions/cart';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,7 @@ const Cart = () => {
         dispatch(removeCartItem(id))
     }
     const handleClearCart = React.useCallback( ()=>{
-        if (isCartEmpty.length !== 0) {
-            if (window.confirm("Delete all items from the cart?")) {
-                dispatch(clearCart());
-            };
-        } else {
-            window.alert('Looks like you didn\'t place any pizzas in the cart yet');
-        }
+        dispatch(clearCart());
     })
 
     //extract data from state
@@ -65,28 +59,35 @@ const Cart = () => {
                                     />
                                 )
                             : 
-                            <div className="cart__empty">Looks like your cart is empty😅 Go to the Home page to find the best pizzas🍕 </div>
+                            <EmptyCart />
                         }
                     </div>
-                    <div className="cart__bottom">
-                        <div className="cart__bottom-details">
-                            <span> Total items: <b>{totalCount}</b> </span>
-                            <span> Total price: <b>${totalPrice}</b> </span>
-                        </div>
-                        <div className="cart__bottom-buttons">
-                            <Link to="/online-store">
-                                <a href="/" className="button button--outline button--add go-back-btn">
-                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    <span>Back</span>
-                                </a>
-                            </Link>
-                            <div className="button pay-btn">
-                                <span>Pay</span>
+                    {
+                        isCartEmpty.length !== 0 
+                        ? 
+                        <div className="cart__bottom">
+                            <div className="cart__bottom-details">
+                                <span> Total items: <b>{totalCount}</b> </span>
+                                <span> Total price: <b>${totalPrice}</b> </span>
+                            </div>
+                            <div className="cart__bottom-buttons">
+                                <Link to="/online-store">
+                                    <Button className="button button--outline button--add go-back-btn">
+                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                        <span>Back</span>
+                                    </Button>
+                                </Link>
+                                <Button className="button pay-btn">
+                                    <span>Pay</span>
+                                </Button>
                             </div>
                         </div>
-                    </div>
+                        :
+                        <></>
+                    }
+                    
                 </div>
             </div>
         </div>

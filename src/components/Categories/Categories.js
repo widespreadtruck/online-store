@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Categories = React.memo(function Categories({ items, onClickCategory, activeCategory }) {
 
-
     return (
         <div className="categories">
             <ul>           
@@ -12,9 +11,7 @@ const Categories = React.memo(function Categories({ items, onClickCategory, acti
                     items.map( (name, index)=>{
                         return <li 
                         className={activeCategory === index ? 'active' : ''} 
-                        onClick={() => {
-                            onClickCategory(index)}
-                            }
+                        onClick={() => onClickCategory(index)}
                         key={`${name}_${index}`}
                         >
                             {name}

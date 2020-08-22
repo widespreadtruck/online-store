@@ -14,29 +14,11 @@ const SortPopUp = React.memo( function SortPopUp( { items, onClickSortType, acti
             name: name
         });
         setVisiblePopUp(false);
-};
+    };
 
     const toggleVisiblePopUp = () => {
         setVisiblePopUp(!visiblePopUp);
     };
-
-    // const handleOutsideClick = (e) => {
-    //     // const path = e.path || (e.composedPath && e.composedPath());
-    //     // if (!e.path.includes(sortRef.current)) {
-    //     //     setVisiblePopUp(false);
-    //     // }
-    
-    //     if (
-    //         (e.originalTarget.offsetParent !== sortRef.current) &&
-    //         (e.originalTarget.offsetParent.offsetParent !== sortRef.current)
-    //     ) {
-    //         setVisiblePopUp(false);
-    //     }        
-    // };
-
-    // useEffect( () => {
-    //     document.body.addEventListener('click', handleOutsideClick);
-    // }, []);
 
     return(
         <div ref={sortRef} 

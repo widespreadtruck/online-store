@@ -13,7 +13,7 @@ export const fetchPizzas = (category, sortBy) => (dispatch) => {
         .then(({ data }) => {
             dispatch(setPizzas(data));
         });
-};
+    };
 
 
 export const setPizzas = (items) => ({

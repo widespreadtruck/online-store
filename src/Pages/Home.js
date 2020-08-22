@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategory, setSortBy } from '../redux/actions/filters';
+import { setCategory, setSortBy, setMiniCategory } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
 import { addPizzaToCart } from '../redux/actions/cart';
 
@@ -8,10 +8,11 @@ import {
     PizzaBlock,
     Categories,
     SortPopUp,
-    PizzaLoadingBlock
+    PizzaLoadingBlock,
+    CategoriesPopUp
 } from '../components/index.js';
 
-const categoryNames = [ "Meat", "Vegan", "Grill", "Spicy", "Pies" ];
+const categoryNames = ["Meat", "Vegetarian", "Grill", "Spicy" ];
 const sortItems = [
     { name: "popularity", type: "rating", order: 'desc' },
     { name: "price", type: "price", order: 'desc' },
@@ -21,6 +22,7 @@ const sortItems = [
 const Home = () => {
     const dispatch = useDispatch();
 
+    const activeMiniCategory = useSelector( (state) => state.filters.category);
     const cartItems = useSelector( ( {cart} )=>cart.items)
     //extracting from state: array of 10 pizzas
     const items = useSelector((state) => state.pizzas.items);
@@ -37,30 +39,54 @@ const Home = () => {
         dispatch(setCategory(index));
     }, []);
 
+    // const onSelectMiniCategory = React.useCallback((index) => {
+    //     dispatch(setCategory(index));
+    // }, []);
+
     const onSelectSortType = React.useCallback( (obj) => {
         dispatch(setSortBy(obj))
     }, [])
 
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const breakpoint = 1060;
+
+
+
     React.useEffect( () => {
         dispatch(fetchPizzas(category, sortBy));
-    }, [category, sortBy])
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        // subscribe to window resize event "onComponentDidMount"
+        window.addEventListener("resize", handleResizeWindow);
+        return () => {
+            // unsubscribe "onComponentDestroy"
+            window.removeEventListener("resize", handleResizeWindow);
+        };
+    }, [category, sortBy]);
     
 
     return (
         <div>
             <div className="container">
                 <div className="content__top">
-
-                    <Categories 
-                        onClickCategory={onSelectCategory}
-                        items={categoryNames}
-                        activeCategory={category}
-                    />
+                    {
+                        (width > breakpoint)
+                            ? <Categories
+                                items={categoryNames}
+                                onClickCategory={onSelectCategory}
+                                activeCategory={category}
+                            />
+                            : <CategoriesPopUp 
+                                items={categoryNames}
+                                onClickCategory={onSelectCategory}
+                                activeCategory={category}
+                            />
+                    }
+                    
 
                     <SortPopUp
                         items={sortItems}
-                        activeSortType={sortBy.name}
                         onClickSortType={onSelectSortType}
+                        activeSortType={sortBy.name}
                     />
 
                 </div>
