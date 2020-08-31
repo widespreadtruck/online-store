@@ -22,7 +22,6 @@ const sortItems = [
 const Home = () => {
     const dispatch = useDispatch();
 
-    const activeMiniCategory = useSelector( (state) => state.filters.category);
     const cartItems = useSelector( ( {cart} )=>cart.items)
     //extracting from state: array of 10 pizzas
     const items = useSelector((state) => state.pizzas.items);
@@ -30,6 +29,7 @@ const Home = () => {
     const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
     //destructuring the state & extracting from state: category & sortBy values from "filters"
     const { category, sortBy} = useSelector( state => state.filters);
+
 
     const handleAddPizzaToCart = obj => {
         dispatch(addPizzaToCart(obj))
@@ -39,18 +39,13 @@ const Home = () => {
         dispatch(setCategory(index));
     }, []);
 
-    // const onSelectMiniCategory = React.useCallback((index) => {
-    //     dispatch(setCategory(index));
-    // }, []);
-
     const onSelectSortType = React.useCallback( (obj) => {
         dispatch(setSortBy(obj))
     }, [])
 
+
     const [width, setWidth] = React.useState(window.innerWidth);
     const breakpoint = 1060;
-
-
 
     React.useEffect( () => {
         dispatch(fetchPizzas(category, sortBy));
