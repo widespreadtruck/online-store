@@ -340,6 +340,12 @@ body {
 
   @media screen and (max-width: 450px) {
     .cart__items .cart__item {
+      padding-top: 0;
+
+      &:first-of-type {
+        padding-top: 30px;
+      }
+
       &-img {
         width: 15%;
         margin-right: 10px;
@@ -424,6 +430,9 @@ body {
 
       span {
         font-size: 22px;
+        @media screen and (max-width: 450px) {
+          font-size: 19px;
+        }
 
         &:last-of-type {
           b {
@@ -444,6 +453,10 @@ body {
         justify-content: center;
         width: 210px;
         height: 55px;
+        
+        @media screen and (max-width: 450px) {
+          width: 150px;
+        }
 
         border-color: darken($color: $gray-line, $amount: 10);
 

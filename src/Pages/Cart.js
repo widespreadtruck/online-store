@@ -1,18 +1,22 @@
 import React from 'react';
 import { CartItem, EmptyCart, Button, ClearCart } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCart, removeCartItem } from '../redux/actions/cart';
+import { addOneItem, removeOneItem, removeCartItem } from '../redux/actions/cart';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const dispatch = useDispatch();
 
+    const handleRemoveOneItem = (id) => {
+        dispatch(removeOneItem(id))
+    };
+    const handleAddOneItem = (id) => {
+        dispatch(addOneItem(id))
+    };
+
     const onRemoveItem = (id) => {
         dispatch(removeCartItem(id))
-    }
-    const handleClearCart = React.useCallback( ()=>{
-        dispatch(clearCart());
-    })
+    };
 
     //extract data from state
     const {totalPrice, totalCount, items} = useSelector((state) => state.cart)
@@ -51,6 +55,8 @@ const Cart = () => {
                                         totalPrice={items[obj.id].totalPrice}
                                         totalCount={items[obj.id].items.length}
                                         onRemove={onRemoveItem}
+                                    onRemoveOneItem={handleRemoveOneItem}
+                                    onAddOneItem={handleAddOneItem}
                                     />
                                 )
                             : 
